@@ -21,13 +21,11 @@ public class Grid : MonoBehaviour
 
     private void OnEnable()
     {
-        _eventManager._mouseUp.AddListener(OnMouseUp);
         ;
     }
 
     private void OnDisable()
     {
-        _eventManager._mouseUp.RemoveListener(OnMouseUp);
     }
 
     public void CreateEmptyGrid(int sizeX, int sizeY)
@@ -67,7 +65,15 @@ public class Grid : MonoBehaviour
         }
     }
 
-    bool CheckPos(Building building, Vector2 pos)
+    public void TryPlaceBuilding(Vector3 pos, Building building)
+    {
+        if (CheckPos(building, ScreenToGridPoint(pos)))
+        {
+            SetBuilding(building, ScreenToGridPoint(pos));
+        }
+    }
+
+     bool CheckPos(Building building, Vector2 pos)
     {
         for (int i = 0; i < building.size.Length; i++)
         {
@@ -85,6 +91,11 @@ public class Grid : MonoBehaviour
         }
 
         return true;
+    }
+
+    public bool CheckIfSuitable(Building b, Vector3 pos)
+    {
+        return (CheckPos(b, ScreenToGridPoint(pos)));
     }
 
     void SetBuilding(Building building, Vector2 pos)

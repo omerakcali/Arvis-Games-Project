@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class BuildingCard : MonoBehaviour
@@ -24,6 +25,11 @@ public class BuildingCard : MonoBehaviour
     {
         
     }
+    public void OnPointerDown()
+    {
+        _eventManager.PointerDownOnBuildingcard(building);
+    }
+    
 
     private void OnEnable()
     {

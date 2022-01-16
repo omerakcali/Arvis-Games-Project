@@ -12,6 +12,7 @@ public class EventManager : ScriptableObject
     public UnityEvent<int, int> _reduceResources;
     public UnityEvent<int, int> _addResources;
     public UnityEvent<int, int> _resourcesChange;
+    public UnityEvent<Building> _pointerDownOnBuildingCard;
 
     public UnityEvent<BuildingBase> _buildingPlaced;
     // Start is called before the first frame update
@@ -50,5 +51,10 @@ public class EventManager : ScriptableObject
     public void AddResources(int gold,int gem)
     {
         _addResources.Invoke(gold, gem);
+    }
+
+    public void PointerDownOnBuildingcard(Building building)
+    {
+        _pointerDownOnBuildingCard.Invoke(building);
     }
 }
