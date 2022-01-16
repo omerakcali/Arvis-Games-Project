@@ -45,7 +45,7 @@ public class EventManager : ScriptableObject
     public void BuildingPlace(BuildingBase building)
     {
         _buildingPlaced.Invoke(building);
-        ReduceResources(building.gold,building.gem);
+        ReduceResources(building.goldCost,building.gemCost);
     }
 
     public void AddResources(int gold,int gem)

@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private EventManager _eventManager;
     [SerializeField] private Text goldText, gemText;
 
-    [SerializeField] private Slider CooldownBar;
+    [SerializeField] private ProgressBar progressBar;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +41,7 @@ public class UIManager : MonoBehaviour
 
     void OnBuildingPlaced(BuildingBase buildingBase)
     {
-        Slider bar = Instantiate(CooldownBar,this.transform);
+        ProgressBar bar = Instantiate(progressBar,this.transform);
         bar.transform.position = buildingBase.transform.position;
         buildingBase.SetCooldownBar(bar);
     }

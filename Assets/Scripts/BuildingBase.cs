@@ -9,7 +9,9 @@ public class BuildingBase : MonoBehaviour
     [SerializeField] private EventManager _eventManager;
     private float time;
     public int gold, gem;
-    private Slider cooldownBar;
+
+    public int goldCost, gemCost;
+    private ProgressBar progressBar;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +30,7 @@ public class BuildingBase : MonoBehaviour
         if (isWorking)
         {
             currentTime += Time.deltaTime;
-            cooldownBar.value = currentTime / time;
+            progressBar.SetBar(currentTime,time);
             if (currentTime >= time)
             {
                 currentTime -= time;
@@ -40,6 +42,8 @@ public class BuildingBase : MonoBehaviour
     void GainResources()
     {
         _eventManager.AddResources(gold,gem);
+        
+        progressBar.FloatText(gold,gem);
     }
 
     public void Initialize(Building building)
@@ -47,10 +51,13 @@ public class BuildingBase : MonoBehaviour
         time = building.cooldown;
         gold = building.gold;
         gem = building.gem;
+        goldCost = building.goldCost;
+        gemCost = building.gemCost;
     }
 
-    public void SetCooldownBar(Slider bar)
+    public void SetCooldownBar(ProgressBar bar)
     {
-        cooldownBar = bar;
+        progressBar = bar;
+        progressBar.FloatText(-goldCost,-gemCost);
     }
 }
