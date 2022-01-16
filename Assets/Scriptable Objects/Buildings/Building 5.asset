@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c20bdd9f910cb254c8fe8b40180daf6a, type: 3}
   m_Name: Building 5
   m_EditorClassIdentifier: 
-  size: 0200000003000000
-  goldCost: 2
-  gemCost: 4
-  cooldown: 3
-  gold: 2
-  gem: 1
+  size: 0200000002000000
+  goldCost: 3
+  gemCost: 2
+  cooldown: 15
+  gold: 4
+  gem: 4
   prefab: {fileID: 6183301107872459851, guid: 84d8812ecd7fe9545be8efe62e46ccc6, type: 3}

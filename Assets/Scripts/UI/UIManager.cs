@@ -39,7 +39,6 @@ public class UIManager : MonoBehaviour
     {
         if(!isFirstChange)
         {
-            Debug.Log("AAAAA");
             CreateFloatingText(int.Parse(goldText.text), gold, int.Parse(gemText.text), gem);
         }else
             isFirstChange = false;
