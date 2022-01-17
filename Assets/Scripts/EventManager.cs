@@ -20,6 +20,8 @@ public class EventManager : ScriptableObject
     public UnityEvent _saveGame;
 
     public UnityEvent _loadGame;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,5 +72,12 @@ public class EventManager : ScriptableObject
     public void PointerDownOnBuildingcard(Building building)
     {
         _pointerDownOnBuildingCard.Invoke(building);
+    }
+
+    public void RestartGame()
+    {
+        
+        PlayerPrefs.DeleteAll();
+        LoadGame();
     }
 }

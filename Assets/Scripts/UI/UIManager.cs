@@ -82,5 +82,12 @@ public class UIManager : MonoBehaviour
             bars.Clear();
         }
     }
+
+    public void OnPressRestart()
+    {
+        ReloadUI();
+        isFirstChange = true;
+        _eventManager.RestartGame();
+    }
     
 }

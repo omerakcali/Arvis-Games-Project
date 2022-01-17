@@ -52,5 +52,10 @@ public class SaveManager : MonoBehaviour
             gameManager.Load();
             grid.LoadGrid();
         }
+        else
+        {
+            grid.NewGame();
+            gameManager.Restart(10,10);
+        }
     }
 }

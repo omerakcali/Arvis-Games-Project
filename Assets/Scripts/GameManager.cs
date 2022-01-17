@@ -72,4 +72,11 @@ public class GameManager : MonoBehaviour
         gemCount+= gem;
         _eventManager.ResourceChange(goldCount,gemCount);
     }
+
+    public void Restart(int gem,int gold)
+    {
+        gemCount = gem;
+        goldCount = gold;
+        _eventManager.ResourceChange(goldCount,gemCount);
+    }
 }

@@ -202,4 +202,10 @@ public class Grid : MonoBehaviour
         
         _buildingBases.Clear();
     }
+
+    public void NewGame()
+    {
+        DestroyGrid();
+        CreateEmptyGrid(10,10);
+    }
 }
