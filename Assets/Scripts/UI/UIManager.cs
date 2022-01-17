@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
 
     private List<ProgressBar> bars;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         bars = new List<ProgressBar>();
     }
@@ -77,8 +77,10 @@ public class UIManager : MonoBehaviour
     public void ReloadUI()
     {
         if(bars!=null)
-            foreach(ProgressBar bar in bars) Destroy(bar.gameObject);
-        bars.Clear();
+        {
+            foreach (ProgressBar bar in bars) Destroy(bar.gameObject);
+            bars.Clear();
+        }
     }
     
 }

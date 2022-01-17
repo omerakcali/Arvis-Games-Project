@@ -28,10 +28,7 @@ public class SaveManager : MonoBehaviour
 
     void Start()
     {
-        if (PlayerPrefs.HasKey("Gold"))
-        {
-            LoadGame();
-        }
+        LoadGame();
     }
 
     // Update is called once per frame
@@ -49,8 +46,11 @@ public class SaveManager : MonoBehaviour
 
     void LoadGame()
     {
-        uiManager.ReloadUI();
-        gameManager.Load();
-        grid.LoadGrid();
+        if (PlayerPrefs.HasKey("Gold"))
+        {
+            uiManager.ReloadUI();
+            gameManager.Load();
+            grid.LoadGrid();
+        }
     }
 }

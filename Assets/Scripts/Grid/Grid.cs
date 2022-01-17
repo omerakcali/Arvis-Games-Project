@@ -22,11 +22,12 @@ public class Grid : MonoBehaviour
     {
         _buildingBases = new List<BuildingBase>();
         tiles = new Tile[0,0];
+        
+        CreateEmptyGrid(10, 10);
     }
 
     private void Start()
     {
-        CreateEmptyGrid(10, 10);
     }
 
     private void OnEnable()
