@@ -89,5 +89,11 @@ public class UIManager : MonoBehaviour
         isFirstChange = true;
         _eventManager.RestartGame();
     }
+
+    public void OnPressExit()
+    {
+        _eventManager.SaveGame();
+        Application.Quit();
+    }
     
 }
