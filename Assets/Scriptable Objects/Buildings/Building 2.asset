@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c20bdd9f910cb254c8fe8b40180daf6a, type: 3}
   m_Name: Building 2
   m_EditorClassIdentifier: 
+  buildingName: House
+  buildingSprite: {fileID: 21300000, guid: a51753ba1af642d4b927a71d10488a85, type: 3}
   size: 02000000
   goldCost: 1
   gemCost: 1

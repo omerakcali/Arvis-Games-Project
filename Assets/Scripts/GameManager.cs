@@ -35,8 +35,30 @@ public class GameManager : MonoBehaviour
         {
             _eventManager.MouseUp(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            _eventManager.SaveGame();
+            
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            _eventManager.LoadGame();
+        }
+        
     }
 
+    public void Save()
+    {
+        PlayerPrefs.SetInt("Gold",goldCount);
+        PlayerPrefs.SetInt("Gem",gemCount);
+    }
+
+    public void Load()
+    {
+            goldCount = PlayerPrefs.GetInt("Gold");
+            gemCount = PlayerPrefs.GetInt(("Gem"));
+        
+    }
     void OnReduceResources(int gold, int gem)
     {
         goldCount -= gold;

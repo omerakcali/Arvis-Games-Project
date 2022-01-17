@@ -9,6 +9,9 @@ public class Tile : MonoBehaviour
         public int indexY;
         [SerializeField] private Sprite emptySprite;
         [SerializeField] private Sprite buildingSprite;
+        public bool isBuildingBase;
+        public int baseTypeID;
+        
         private SpriteRenderer sr;
         public enum TileTypes
         {
@@ -33,6 +36,13 @@ public class Tile : MonoBehaviour
         {
             tileType = TileTypes.Building;
             sr.sprite = buildingSprite;
+        }
+
+        public void SetBuildingBase(int id)
+        {
+            isBuildingBase = true;
+            baseTypeID = id;
+
         }
 
         public void Initialize(Vector2 pos, Transform parent)

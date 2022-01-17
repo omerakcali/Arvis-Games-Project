@@ -10,11 +10,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text goldText, gemText;
     [SerializeField] private ProgressBar progressBar;
     [SerializeField] private FloatingText floatingTextPrefab;
-    
+
+    private List<ProgressBar> bars;
     // Start is called before the first frame update
     void Start()
     {
-        
+        bars = new List<ProgressBar>();
     }
 
     // Update is called once per frame
@@ -65,10 +66,19 @@ public class UIManager : MonoBehaviour
     
     
 
-    void OnBuildingPlaced(BuildingBase buildingBase)
+    void OnBuildingPlaced(BuildingBase buildingBase,bool isLoad)
     {
         ProgressBar bar = Instantiate(progressBar,this.transform);
         bar.transform.position = buildingBase.transform.position;
-        buildingBase.SetCooldownBar(bar);
+        buildingBase.SetCooldownBar(bar,isLoad);
+        bars.Add(bar);
     }
+
+    public void ReloadUI()
+    {
+        if(bars!=null)
+            foreach(ProgressBar bar in bars) Destroy(bar.gameObject);
+        bars.Clear();
+    }
+    
 }

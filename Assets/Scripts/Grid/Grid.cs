@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
     [SerializeField] private EventManager _eventManager;
+    [SerializeField] private BuildingsList buildingsList;
     Tile[,] tiles;
 
     [SerializeField] private Tile _tilePrefab;
@@ -14,6 +16,14 @@ public class Grid : MonoBehaviour
 
     [SerializeField] private Building testBuilding;
 
+    List<BuildingBase> _buildingBases;
+
+    private void Awake()
+    {
+        _buildingBases = new List<BuildingBase>();
+        tiles = new Tile[0,0];
+    }
+
     private void Start()
     {
         CreateEmptyGrid(10, 10);
@@ -21,7 +31,7 @@ public class Grid : MonoBehaviour
 
     private void OnEnable()
     {
-        ;
+        
     }
 
     private void OnDisable()
@@ -55,6 +65,7 @@ public class Grid : MonoBehaviour
 
     private void Update()
     {
+        
     }
 
     void OnMouseUp(Vector3 pos)
@@ -100,6 +111,7 @@ public class Grid : MonoBehaviour
 
     void SetBuilding(Building building, Vector2 pos)
     {
+        tiles[(int) pos.x, (int) pos.y].SetBuildingBase(building.id);
         for (int i = 0; i < building.size.Length; i++)
         {
             for (int j = 0; j < building.size[i]; j++)
@@ -111,11 +123,82 @@ public class Grid : MonoBehaviour
         BuildingBase b = Instantiate(building.prefab);
         b.Initialize(building);
         b.transform.position = GridtoWorldPoint(pos);
-        _eventManager.BuildingPlace(b);
+        _eventManager.BuildingPlace(b,false);
+        _buildingBases.Add(b);
     }
 
     Vector3 GridtoWorldPoint(Vector2 pos)
     {
         return transform.TransformPoint(pos);
+    }
+
+    public void SaveGrid()
+    {
+        PlayerPrefs.SetInt("sizeX",sizeX);
+        PlayerPrefs.SetInt("sizeY",sizeY);
+        string saveData = "";
+        for (int i = 0; i < sizeX; i++)
+        {
+            for (int j = 0; j < sizeY; j++)
+            {
+                Tile tile = tiles[i, j];
+                if (tile.tileType != Tile.TileTypes.Empty)
+                {
+                    if (tile.isBuildingBase) saveData += tile.baseTypeID;
+                    else saveData += "B";
+                }
+                else saveData += "E";
+            }
+
+        }
+        Debug.Log(saveData);
+        PlayerPrefs.SetString("Grid",saveData);
+    }
+
+    public void LoadGrid()
+    {
+        DestroyGrid();
+        if (PlayerPrefs.HasKey("Grid"))
+        {
+            string loadData = PlayerPrefs.GetString("Grid");
+
+            int x, y; 
+            x = PlayerPrefs.GetInt("sizeX");
+            y = PlayerPrefs.GetInt("sizeY");
+            CreateEmptyGrid(x,y);
+
+            for (int i = 0; i < loadData.Length; i++)
+            {
+                char data = loadData[i];
+                Tile tile = tiles[i / x, i % y];
+                    if(data!='E')
+                    {
+                        tile.SetBuilding();
+                        if (data != 'B')
+                        {
+                            int id = int.Parse(data.ToString());
+                            tile.SetBuildingBase(id);
+                            BuildingBase b = Instantiate(buildingsList.buildings[id].prefab);
+                            b.Initialize(buildingsList.buildings[id]);
+                            b.transform.position = GridtoWorldPoint(new Vector2(i / x, i % y));
+                            _eventManager.BuildingPlace(b, true);
+                            _buildingBases.Add(b);
+                        }
+                    }
+                
+            }
+        }
+    }
+
+    void DestroyGrid()
+    {
+        foreach (Tile i in tiles)
+        {
+            Destroy(i.gameObject);
+        }
+        
+        foreach(BuildingBase i in _buildingBases) Destroy(i.gameObject);
+        
+        _buildingBases.Clear();
     }
 }

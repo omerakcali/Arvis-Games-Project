@@ -9,7 +9,8 @@ public class BuildingCard : MonoBehaviour
 {
     [SerializeField] private EventManager _eventManager;
     [SerializeField] private Building building;
-    [SerializeField] private Text goldText, gemText;
+    [SerializeField] private Text goldText, gemText,nameText;
+    [SerializeField] private Image img;
 
     private Button _button;
     // Start is called before the first frame update
@@ -20,6 +21,12 @@ public class BuildingCard : MonoBehaviour
         gemText.text = building.gemCost.ToString();
     }
 
+    private void OnValidate()
+    {
+        nameText.text = building.buildingName;
+        img.sprite = building.buildingSprite;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -27,7 +34,8 @@ public class BuildingCard : MonoBehaviour
     }
     public void OnPointerDown()
     {
-        _eventManager.PointerDownOnBuildingcard(building);
+        if(_button.interactable)
+            _eventManager.PointerDownOnBuildingcard(building);
     }
     
 

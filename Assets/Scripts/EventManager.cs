@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,11 @@ public class EventManager : ScriptableObject
     public UnityEvent<int, int> _resourcesChange;
     public UnityEvent<Building> _pointerDownOnBuildingCard;
 
-    public UnityEvent<BuildingBase> _buildingPlaced;
+    public UnityEvent<BuildingBase,bool> _buildingPlaced;
+
+    public UnityEvent _saveGame;
+
+    public UnityEvent _loadGame;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,15 +42,24 @@ public class EventManager : ScriptableObject
         _reduceResources.Invoke(gold,gem);
     }
 
+    public void SaveGame()
+    {
+        _saveGame.Invoke();
+    }
+    public void LoadGame()
+    {
+        _loadGame.Invoke();
+    }
     public void ResourceChange(int gold, int gem)
     {
         _resourcesChange.Invoke(gold,gem);
     }
 
-    public void BuildingPlace(BuildingBase building)
+    public void BuildingPlace(BuildingBase building,bool isLoad)
     {
-        _buildingPlaced.Invoke(building);
-        ReduceResources(building.goldCost,building.gemCost);
+        _buildingPlaced.Invoke(building,isLoad);
+        if(!isLoad)
+            ReduceResources(building.goldCost,building.gemCost);
     }
 
     public void AddResources(int gold,int gem)

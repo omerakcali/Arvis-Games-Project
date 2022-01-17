@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c20bdd9f910cb254c8fe8b40180daf6a, type: 3}
   m_Name: Building 3
   m_EditorClassIdentifier: 
+  buildingName: Castle
+  buildingSprite: {fileID: 21300000, guid: daf1245d2aa003744ad7675a3bb996c6, type: 3}
   size: 0100000002000000
   goldCost: 3
   gemCost: 2
-  cooldown: 10
+  cooldown: 12
   gold: 2
   gem: 2
   prefab: {fileID: 6183301107872459851, guid: 84d8812ecd7fe9545be8efe62e46ccc6, type: 3}

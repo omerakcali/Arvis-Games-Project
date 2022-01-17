@@ -34,7 +34,7 @@ public class ProgressBar : MonoBehaviour
     public void SetBar(float currentVal, float maxVal)
     {
         slider.value = currentVal / maxVal;
-        timeText.text = (maxVal - currentVal).ToString("0");
+        timeText.text = Mathf.Ceil(maxVal - currentVal).ToString("0");
     }
 
     public void FloatText(int gold, int gem)

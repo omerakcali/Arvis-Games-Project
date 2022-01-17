@@ -55,9 +55,10 @@ public class BuildingBase : MonoBehaviour
         gemCost = building.gemCost;
     }
 
-    public void SetCooldownBar(ProgressBar bar)
+    public void SetCooldownBar(ProgressBar bar,bool isLoad)
     {
         progressBar = bar;
-        progressBar.FloatText(-goldCost,-gemCost);
+        if(!isLoad)
+            progressBar.FloatText(-goldCost,-gemCost);
     }
 }
