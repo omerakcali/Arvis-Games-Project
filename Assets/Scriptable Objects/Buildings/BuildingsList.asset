@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d67251e6a932f6e4f941d2260ba36d90, type: 3}
   m_Name: BuildingsList
   m_EditorClassIdentifier: 
-  buildings: []
+  buildings:
+  - {fileID: 11400000, guid: ca601dd42c0dec14ba73e2a776ff8320, type: 2}
+  - {fileID: 11400000, guid: 0db3925d9b8b8934199ff9dbb85437df, type: 2}
+  - {fileID: 11400000, guid: d4b92b0060772874295778913fda05f5, type: 2}
+  - {fileID: 11400000, guid: 64aca400233f1ed49a3660ddee49f405, type: 2}
+  - {fileID: 11400000, guid: 168758a132a4a0e45b4fd5b3a93daaa7, type: 2}
+  - {fileID: 11400000, guid: 3728b4ccea6041c4a9da85c63757f290, type: 2}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c20bdd9f910cb254c8fe8b40180daf6a, type: 3}
   m_Name: Building 3
   m_EditorClassIdentifier: 
+  id: 2
   buildingName: Castle
   buildingSprite: {fileID: 21300000, guid: daf1245d2aa003744ad7675a3bb996c6, type: 3}
   size: 0100000002000000
